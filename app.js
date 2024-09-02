@@ -15,7 +15,6 @@ app.listen(port, () => {
 });
 
 function handle(req, res) {
-    console.log(req);
     const requestInfo = {
         ip: req.ip,
         ips: req.ips,
@@ -26,8 +25,9 @@ function handle(req, res) {
         body: req.body,
         timestamp: new Date().toISOString()
     };
-
+    
     const logEntry = JSON.stringify(requestInfo, null, 2) + '\n\n';
+    console.log(logEntry);
 
     fs.appendFile(`${new Date().toISOString()}.json`, logEntry, (err) => {
         if (err) {
